@@ -1,0 +1,42 @@
+---
+- name: Add RoutePattern
+  uri:
+    url: "https://{{ ansible_host }}:8443/axl/"
+    method: POST
+    headers:
+      Content-Type: text/xml
+      SOAPAction: '"CUCM:DB ver={{ axl_version }} addRoutePattern"'
+    force_basic_auth: true
+    user: "{{ hostvars[inventory_hostname].axl_user }}"
+    password: "{{ hostvars[inventory_hostname].axl_password }}"
+    body: >-
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.cisco.com/AXL/API/{{ axl_version }}">
+        <soapenv:Body>
+          <ns:addRoutePattern sequence="1">
+            <routePattern>
+              <pattern>{{ pattern }}</pattern>
+              <routePartitionName uuid="?">{{ routepartition }}</routePartitionName>
+              <blockEnable>{{ blockenable }}</blockEnable>
+              <useCallingPartyPhoneMask>Default</useCallingPartyPhoneMask>
+              <dialPlanName uuid="?">{{ dialplan }}</dialPlanName>
+              <digitDiscardInstructionName uuid="?">{{ discarddigits }}</digitDiscardInstructionName>
+              <networkLocation>OnNet</networkLocation>
+              <prefixDigitsOut>{{ prefixDigitsOut }}</prefixDigitsOut>
+              <routeFilterName uuid="?">{{ routeFilterName }}</routeFilterName>
+              <destination>
+                <!--You have a CHOICE of the next 2 items at this level-->
+                <routeListName uuid="?">{{ routeListName }}</routeListName>
+              </destination>
+              <isEmergencyServiceNumber>false</isEmergencyServiceNumber>
+            </routePattern>
+          </ns:addRoutePattern>
+        </soapenv:Body>
+      </soapenv:Envelope>
+    validate_certs: false
+    return_content: true
+    status_code:
+      - 200
+      - 500
+  register: response
+  changed_when: response.status == 200
+  failed_when: response.status == 500 and '<axlcode>-239' not in response.content
