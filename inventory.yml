@@ -1,7 +1,7 @@
 ---
 HQCluster:
   hosts:
-    192.168.216.20:
+    XXX.XXX.XXX.XXX:
       ansible_host: XXX.XXX.XXX.XXX
       axl_user: XXXXX
       axl_password: XXXXX
