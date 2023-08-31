@@ -1,0 +1,40 @@
+---
+- name: AXL Add Route Pattern
+  hosts: HQCluster
+  connection: local
+  gather_facts: false
+  vars_prompt:
+    - name: pattern
+      prompt: Enter Route Pattern
+      private: false
+    - name: routepartition
+      prompt: Enter route partition
+      private: false
+    - name: blockenable
+      prompt: Enter if block is enable - True or False
+      private: false
+    - name: dialplan
+      prompt: Enter dial plan name
+      private: false
+    - name: discarddigits
+      prompt: Enter discard digits instructions
+      private: false
+    - name: prefixDigitsOut
+      prompt: Enter prefix digits out
+      private: false
+    - name: routeFilterName
+      prompt: Enter route filter name
+      private: false
+    - name: routeListName
+      prompt: Enter route list name
+      private: false
+
+
+  tasks:
+    - name: Get CUCM version
+      ansible.builtin.include_tasks: axl/getCCMVersion.yml
+
+    - name: Add route pattern
+      ansible.builtin.include_tasks: axl/addRoutePattern.yml
+
+
