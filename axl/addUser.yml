@@ -14,12 +14,12 @@
         <soapenv:Body>
           <ns:addUser sequence="1">
             <user>
-              <lastName>{{ lastname }}</lastName>
-              <userid>{{ userid }}</userid>
-              <password>{{ password }}</password>
-              <pin>{{ pin }}</pin>
+              <lastName>{{ item.lastname }}</lastName>
+              <userid>{{ item.userid }}</userid>
+              <password>{{ item.password }}</password>
+              <pin>{{ item.pin }}</pin>
               <associatedDevices>
-                <device>{{ device_name }}</device>
+                <device>{{ item.device_name }}</device>
               </associatedDevices>
               </user>
           </ns:addUser>
