@@ -1,0 +1,22 @@
+---
+- name: AXL Add User via CSV file
+  hosts: HQCluster
+  connection: local
+  gather_facts: false
+  tasks:
+   - name: reading the csv file
+     read_csv:
+      path: user_list.csv
+     register: user_list
+     delegate_to: localhost
+
+   - name: display user_list data
+     debug:
+      var: user_list.list
+
+   - name: Get CUCM version
+     ansible.builtin.include_tasks: axl/getCCMVersion.yml
+
+   - name: Add the new user
+     ansible.builtin.include_tasks: axl/addUser.yml
+     loop: "{{ user_list.list }}"
