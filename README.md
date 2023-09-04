@@ -1,2 +1,2 @@
 # CUCM-Automation
-My repository for Cisco Call Manager automation using Ansible and Python.
+My repository for Cisco Call Manager automation using Ansible
