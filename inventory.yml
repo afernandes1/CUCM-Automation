@@ -1,7 +1,7 @@
 ---
 HQCluster:
   hosts:
-    XXX.XXX.XXX.XXX:
-      ansible_host: XXX.XXX.XXX.XXX
-      axl_user: XXXXX
-      axl_password: XXXXX
+    192.168.216.20:
+      ansible_host: 192.168.216.20
+      axl_user: AXL_USER
+      axl_password: Cisco123
