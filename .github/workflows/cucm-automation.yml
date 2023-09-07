@@ -24,7 +24,7 @@ jobs:
       - name: setup python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11' # install the python version needed
+          python-version: '3.11' 
 
       - name: Run Ansible Playbook
         run: ansible-playbook -i inventory.yml add_userCSV.yml
