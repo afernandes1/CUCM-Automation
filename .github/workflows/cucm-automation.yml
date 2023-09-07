@@ -21,5 +21,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11' # install the python version needed
+
       - name: Run Ansible Playbook
         run: ansible-playbook -i inventory.yml add_userCSV.yml
