@@ -1,0 +1,22 @@
+---
+- name: AXL Add Phone via CSV file
+  hosts: HQCluster
+  connection: local
+  gather_facts: false
+  tasks:
+   - name: reading the csv file
+     read_csv:
+      path: phone_list.csv
+     register: phone_list
+     delegate_to: localhost
+
+   - name: display phone_list data
+     debug:
+      var: phone_list.list
+
+   - name: Get CUCM version
+     ansible.builtin.include_tasks: axl/getCCMVersion.yml
+
+   - name: Add the new Phones
+     ansible.builtin.include_tasks: axl/addPhone.yml
+     loop: "{{ phone_list.list }}"
