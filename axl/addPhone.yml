@@ -5,33 +5,32 @@
     method: POST
     headers:
       Content-Type: text/xml
-      SOAPAction: '"CUCM:DB ver={{ axl_version }} addUser"'
+      SOAPAction: '"CUCM:DB ver={{ axl_version }} addPhone"'
     force_basic_auth: true
     user: "{{ hostvars[inventory_hostname].axl_user }}"
     password: "{{ hostvars[inventory_hostname].axl_password }}"
     body: >-
       <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.cisco.com/AXL/API/{{ axl_version }}">
-         <soapenv:Body>
-            <ns:addPhone sequence="?">
-               <phone ctiid="?">
-                  <name>{{ item.phonename }}</name>
-                  <product>{{ item.phoneproduct }}</product>
-                  <class>{{ item.phoneclass }}</class>
-                  <protocol>{{ item.phoneprotocol }}</protocol>
-                  <protocolSide>User</protocolSide>
-                  <devicePoolName uuid="?">{{ item.phonedevicePool }}</devicePoolName>
-                  <commonPhoneConfigName uuid="?">{{ item.phoneCMC }}</commonPhoneConfigName>
-                  <locationName uuid="?">{{ item.phoneLocation }}</locationName>
-                  <useTrustedRelayPoint>Default</useTrustedRelayPoint>
-                  <phoneTemplateName uuid="?">{{ item.phoneTemplate }}</phoneTemplateName>
-                  <primaryPhoneName uuid="?">{{ item.phonePrimaryPN }}</primaryPhoneName>
-                  <builtInBridgeStatus>Default</builtInBridgeStatus>
-                  <packetCaptureMode>None</packetCaptureMode>
-                  <certificateOperation>No Pending Operation</certificateOperation>
-                  <deviceMobilityMode>Default</deviceMobilityMode>
-               </phone>
-            </ns:addPhone>
-         </soapenv:Body>
+        <soapenv:Body>
+          <ns:addPhone sequence="1">
+            <phone ctiid="?">
+              <name>{{ item.phonename }}</name>
+              <product>{{ item.phoneproduct }}</product>
+              <class>Phone</class>
+              <protocol>{{ item.phoneprotocol }}</protocol>
+              <protocolSide>User</protocolSide>
+              <devicePoolName uuid="?">{{ item.phonedevicePool }}</devicePoolName>
+              <commonPhoneConfigName uuid="?">{{ item.phoneCMC }}</commonPhoneConfigName>
+              <locationName uuid="?">{{ item.phoneLocation }}</locationName>
+              <useTrustedRelayPoint>Default</useTrustedRelayPoint>
+              <phoneTemplateName uuid="?">{{ item.phoneTemplate }}</phoneTemplateName>
+              <builtInBridgeStatus>Default</builtInBridgeStatus>
+              <packetCaptureMode>None</packetCaptureMode>
+              <certificateOperation>No Pending Operation</certificateOperation>
+              <deviceMobilityMode>Default</deviceMobilityMode>
+            </phone>
+          </ns:addPhone>
+        </soapenv:Body>
       </soapenv:Envelope>
     validate_certs: false
     return_content: true
