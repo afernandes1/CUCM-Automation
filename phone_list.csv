@@ -1,0 +1,4 @@
+phonename,phoneproduct,phoneprotocol,phonedevicePool,phoneCMC,phoneLocation,phoneTemplate
+CSFacftest,Cisco Unified Client Services Framework,SIP,Default,Standard Common Phone Profile,Hub_None,Standard Client Services Framework
+CSFTEST1,Cisco Unified Client Services Framework,SIP,Default,Standard Common Phone Profile,Hub_None,Standard Client Services Framework
+CSFTEST2,Cisco Unified Client Services Framework,SIP,Default,Standard Common Phone Profile,Hub_None,Standard Client Services Framework
